@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>QaTestApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+  </head>
+
+  <style type="text/css">
+    h1 a {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+
+
+  <body>
+    <h1><a href="/">Qa Test Page</a></h1>
+
+    <%= yield %>
+  </body>
+</html>

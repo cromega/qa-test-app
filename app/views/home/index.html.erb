@@ -1,0 +1,6 @@
+<% if @user %>
+  <%= render "welcome", user: @user %>
+<% else %>
+  <%= render "not_logged_in" %>
+<% end %>
+
