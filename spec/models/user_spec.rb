@@ -25,6 +25,14 @@ describe User, type: :model do
         expect(user.errors.full_messages.first).to eq "Email has to look like an email address"
       end
     end
+
+    describe "#password" do
+      it "has to match the confirmation" do
+        user = User.new(username: "test", email: "test@test", password: "pw", password_confirmation: "different")
+        user.validate
+        expect(user.errors.full_messages.first).to eq "Password confirmation doesn't match Password"
+      end
+    end
   end
 
   describe ".create" do
