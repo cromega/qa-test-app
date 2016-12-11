@@ -26,7 +26,7 @@ describe User, type: :model do
       end
     end
 
-    describe "#password" do
+    describe "password" do
       it "has to match the confirmation" do
         user = User.new(username: "test", email: "test@test", password: "pw", password_confirmation: "different")
         user.validate
