@@ -32,6 +32,13 @@ describe User, type: :model do
         user.validate
         expect(user.errors.full_messages.first).to eq "Password confirmation doesn't match Password"
       end
+
+      it "is required" do
+        user = User.new(username: "test", email: "test@test", password: "", password_confirmation: "")
+        user.validate
+        expect(user.errors.full_messages.first).to eq "Password can't be blank"
+      end
+
     end
   end
 
