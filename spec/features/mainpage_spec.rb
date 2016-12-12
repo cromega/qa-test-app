@@ -1,6 +1,6 @@
-require "feature/feature_helper"
+require "features/feature_helper"
 
-describe "Main page", type: :feature, js: true, driver: :selenium do
+describe "Main page", driver: :selenium do
   it "works" do
     visit "/"
     expect(page).to have_content "Qa Test Page"
