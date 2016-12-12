@@ -29,9 +29,17 @@ bundle exec rails server
 
 Visit http://localhost:3000
 
-## Running unit tests
+## Running tests
+
+### Unit tests
 
 ```sh
-bundle exec rspec
+bundle exec rspec spec/unit
+```
+
+### Features
+
+```sh
+bundle exec rspec spec/features
 ```
 
