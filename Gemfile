@@ -21,4 +21,5 @@ group :test do
   gem "rails-controller-testing"
   gem "capybara-rails"
   gem "selenium-webdriver"
+  gem "database_cleaner"
 end
