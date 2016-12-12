@@ -19,4 +19,6 @@ end
 group :test do
   gem "rspec-rails"
   gem "rails-controller-testing"
+  gem "capybara-rails"
+  gem "selenium-webdriver"
 end
