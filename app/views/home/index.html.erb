@@ -1,4 +1,10 @@
 <div id="main_page">
+  <% if flash[:notice] %>
+    <div class="notice">
+      <p><%= flash[:notice] %></p>
+    </div>
+  <% end %>
+
   <% if @user %>
     <%= render "welcome", user: @user %>
   <% else %>

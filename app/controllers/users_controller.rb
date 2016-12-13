@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
 
     if user.save
+      flash[:notice] = "User has been created successfully!"
       redirect_to "/"
     else
       @user = User.new
