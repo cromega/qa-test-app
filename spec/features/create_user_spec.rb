@@ -1,8 +1,13 @@
 require "features/feature_helper"
 
+
 describe "Create a user", driver: :selenium do
-  it "creates a new user" do
+
+  before do
     visit "/users/new"
+  end
+
+  it "creates a new user" do
 
     fill_in('Username', with: 'Sirion')
     fill_in('Email', with: 'siriondragon@gmail.com')
@@ -15,4 +20,17 @@ describe "Create a user", driver: :selenium do
     sleep 2
   end
 
+  context "with an invalid email address" do
+    it "displays an error message" do
+      
+      fill_in('Username', with: 'Sirion')
+      fill_in('Email', with: 'siriondragon.gmail.com')
+      fill_in('Password', with: 'ilovefire')
+      fill_in('Password confirmation', with: 'ilovefire')
+      click_button('Create')
+
+      expect(page).to have_content ('Email has to look like an email address')
+    end
+  end
+  
 end
