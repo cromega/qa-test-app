@@ -14,3 +14,25 @@
  *= require_self
  */
 
+html {
+  width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+}
+
+.form {
+
+}
+
+.form label {
+  width: 200px;
+  float: left;
+}
+
+.float-clear {
+  clear: both;
+}
+
