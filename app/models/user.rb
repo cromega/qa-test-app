@@ -10,4 +10,5 @@ class User < ApplicationRecord
   validates :username, uniqueness: true, length: { minimum: 4 }
   validates :email, format: { with: /@/, message: "has to look like an email address" }
   validates :password, confirmation: true, presence: true
+  validates :password_confirmation, presence: true
 end

@@ -6,7 +6,7 @@ describe HomeController, type: :controller do
 
     context "with user logged in" do
       before do
-        user = User.create(username: "test", email: "test@test", password: "test")
+        user = User.create(username: "test", email: "test@test", password: "test", password_confirmation: "test")
         request.session[:user_id] = user.id
       end
 

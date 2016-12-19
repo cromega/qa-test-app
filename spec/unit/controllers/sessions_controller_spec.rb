@@ -10,7 +10,7 @@ describe SessionsController, type: :controller do
 
   describe "#create" do
     context "when the user exists" do
-      let(:user) { User.create(username: "test", email: "test@test", password: "test") }
+      let(:user) { User.create(username: "test", email: "test@test", password: "test", password_confirmation: "test") }
 
       it "sets the session" do
         post :create, params: { username: user.username, password: "test" }
