@@ -2,7 +2,9 @@ require "digest/sha1"
 
 class User < ApplicationRecord
   before_save do
-    self.password = Digest::SHA1.hexdigest self.password
+    if new_record? || password_changed?
+      self.password = Digest::SHA1.hexdigest self.password
+    end
   end
 
   validates :username, uniqueness: true, length: { minimum: 4 }

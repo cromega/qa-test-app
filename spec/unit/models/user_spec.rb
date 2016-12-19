@@ -42,10 +42,30 @@ describe User, type: :model do
     end
   end
 
-  describe ".create" do
-    it "creates the user with the password hashed" do
-      u = User.create(username: "test", email: "asd@asd.com", password: "foobar")
-      expect(u.password).to eq "8843d7f92416211de9ebb963ff4ce28125932878"
+  describe "hooks" do
+    describe "before_save" do
+      context "when it's a new record" do
+        it "saves the password hashed" do
+          u = User.create(username: "test", email: "asd@asd.com", password: "foobar")
+          expect(u.password).to eq "8843d7f92416211de9ebb963ff4ce28125932878"
+        end
+      end
+
+      context "when the password is not updated" do
+        it "does not change the password" do
+          u = User.create(username: "test", email: "asd@asd.com", password: "foobar")
+          u.update(username: "test2")
+          expect(u.password).to eq "8843d7f92416211de9ebb963ff4ce28125932878"
+        end
+      end
+
+      context "when the password is updated" do
+        it "saves the password hashed" do
+          u = User.create(username: "test", email: "asd@asd.com", password: "foobar")
+          u.update(password: "foobar2")
+          expect(u.password).to eq "c0ac73e304ca4fd4275985fe1e5ee6a113399eee"
+        end
+      end
     end
   end
 end
