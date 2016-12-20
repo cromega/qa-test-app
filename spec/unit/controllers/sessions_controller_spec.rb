@@ -10,29 +10,34 @@ describe SessionsController, type: :controller do
 
   describe "#create" do
     context "when the user exists" do
-      let(:user) { User.create(username: "test", email: "test@test", password: "test", password_confirmation: "test") }
+      let(:password) { "foobar" }
+      let(:user) { create(:user, password: password) }
 
       it "sets the session" do
-        post :create, params: { username: user.username, password: "test" }
+        post :create, params: { username: user.username, password: password }
         expect(session[:user_id]).to eq user.id
       end
 
       it "redirects to the main page" do
-        post :create, params: { username: user.username, password: "test" }
+        post :create, params: { username: user.username, password: password }
         expect(response).to redirect_to "/"
       end
     end
 
     context "when the user does not exist" do
       it "redirects to the login page" do
-        post :create, params: { username: "dontexist", password: "test" }
+        post :create, params: { username: "dontexist", password: "foobar" }
         expect(response).to render_template :new
       end
     end
   end
 
   describe "#destroy" do
-    let(:user) { User.create(username: "test", email: "test@test", password: "test") }
+    let(:user) { create(:user) }
+
+    before do
+      session[:user_id] = user.id
+    end
 
     it "destroys the session" do
       delete :destroy

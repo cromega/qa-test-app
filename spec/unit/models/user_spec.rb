@@ -3,40 +3,38 @@ require 'rails_helper'
 describe User, type: :model do
   describe "attribute" do
     describe "username" do
-      before do
-        User.create(username: "test", email: "asd@asd.com", password: "foobar", password_confirmation: "foobar")
-      end
-
       it "is unique" do
-        user = User.create(username: "test", email: "asd@asd.com", password: "foobar", password_confirmation: "foobar")
-        expect(user.errors.full_messages).to include "Username has already been taken"
+        user = create(:user)
+        other_user = User.create(username: user.username)
+        expect(other_user.errors.full_messages).to include "Username has already been taken"
       end
 
       it "is at least 4 characters long" do
-        user = User.create(username: "asd", email: "asd@asd.com", password: "foobar", password_confirmation: "foobar")
+        user = build(:user, username: "joe")
+        user.validate
         expect(user.errors.full_messages).to include "Username is too short (minimum is 4 characters)"
       end
     end
 
     describe "email" do
       it "has to look like an email address" do
-        user = User.new(username: "test", email: "bademail", password: "foobar", password_confirmation: "foobar")
+        user = build(:user, email: "bademail")
         user.validate
-        expect(user.errors.full_messages.first).to eq "Email has to look like an email address"
+        expect(user.errors.full_messages).to include "Email has to look like an email address"
       end
     end
 
     describe "password" do
       it "has to match the confirmation" do
-        user = User.new(username: "test", email: "test@test", password: "pw", password_confirmation: "different")
+        user = build(:user, password: "password", password_confirmation: "different")
         user.validate
-        expect(user.errors.full_messages.first).to eq "Password confirmation doesn't match Password"
+        expect(user.errors.full_messages).to include "Password confirmation doesn't match Password"
       end
 
       it "is required" do
-        user = User.new(username: "test", email: "test@test", password: "", password_confirmation: "")
+        user = build(:user, password: "", password_confirmation: "")
         user.validate
-        expect(user.errors.full_messages.first).to eq "Password can't be blank"
+        expect(user.errors.full_messages).to include "Password can't be blank"
       end
 
     end
