@@ -56,7 +56,6 @@ context "with a wrong password confirmation" do
       click_button('Create')
 
       expect(page).to have_content ("Username is too short (minimum is 4 characters)")
-      sleep 2
     end
   end
 

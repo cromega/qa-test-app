@@ -29,7 +29,7 @@ describe UsersController, type: :controller do
         expect(User.count).to be 0
       end
 
-      it "rerenders the the new user page" do
+      it "rerenders the new user page" do
         expect(response).to render_template :new
       end
     end
