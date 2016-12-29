@@ -7,13 +7,7 @@
 <div class="form" id="signup_form">
   <%= form_for @user do |form| %>
     <%= field_set_tag "New user details" do %>
-      <% if flash[:errors] %>
-        <ul>
-          <% flash[:errors].each do |error| %>
-            <li><%= error %></li>
-          <% end %>
-        </ul>
-      <% end %>
+      <%= render "shared/form_errors" %>
 
       <p>
         <%= form.label :username %>
