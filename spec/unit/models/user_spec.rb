@@ -52,6 +52,7 @@ describe User, type: :model do
       context "when the password is not updated" do
         it "does not change the password" do
           u = User.create(username: "test", email: "asd@asd.com", password: "foobar", password_confirmation: "foobar")
+
           u.update!(username: "test2")
           expect(u.password).to eq "8843d7f92416211de9ebb963ff4ce28125932878"
         end
@@ -60,6 +61,7 @@ describe User, type: :model do
       context "when the password is updated" do
         it "saves the password hashed" do
           u = User.create(username: "test", email: "asd@asd.com", password: "foobar", password_confirmation: "foobar")
+
           u.update!(password: "foobar2", password_confirmation: "foobar2")
           expect(u.password).to eq "c0ac73e304ca4fd4275985fe1e5ee6a113399eee"
         end

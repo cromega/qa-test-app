@@ -2,4 +2,5 @@
   Welcome <%= user.username %>!
 </h2>
 
+<%= link_to "Profile", edit_user_path(@user) %>
 <%= link_to "Log out", logout_path %>

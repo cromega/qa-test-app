@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :authenticate, except: %i(new create)
+
   def new
     @user = User.new
   end
@@ -13,6 +15,20 @@ class UsersController < ApplicationController
       @user = User.new
       flash.now[:errors] = user.errors.full_messages
       render :new
+    end
+  end
+
+  def edit
+    render :edit
+  end
+
+  def update
+    if current_user.update(user_params)
+      flash.now[:success] = "User details updated"
+      render :edit
+    else
+      flash.now[:errors] = current_user.errors.full_messages
+      render :edit
     end
   end
 
