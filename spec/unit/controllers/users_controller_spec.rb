@@ -83,7 +83,7 @@ describe UsersController, type: :controller do
 
       it "renders the profile page" do
         patch :update, params: {
-          id: user.id, user: { username: "newusername" }
+          id: user.id, user: { username: "newusername", password: "", password_confirmation: "" }
         }
 
         expect(response).to render_template :edit
