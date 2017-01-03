@@ -23,6 +23,10 @@ class UsersController < ApplicationController
   end
 
   def update
+    if user_params[:password].blank?
+      params[:user].delete(:password)
+    end
+
     if current_user.update(user_params)
       flash.now[:success] = "User details updated"
       render :edit

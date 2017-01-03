@@ -73,6 +73,14 @@ describe UsersController, type: :controller do
         expect(user.reload.username).to eq "newusername"
       end
 
+      it "does not change the password" do
+        patch :update, params: {
+          id: user.id, user: { username: "newusername", password: "", password_confirmation: "" }
+        }
+
+        expect(user.password).to eq user.reload.password
+      end
+
       it "renders the profile page" do
         patch :update, params: {
           id: user.id, user: { username: "newusername" }
