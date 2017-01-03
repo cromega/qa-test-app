@@ -16,8 +16,6 @@ describe "Create a user", driver: :selenium do
     click_button('Create')
 
     expect(page).to have_content ('User has been created successfully!')
-
-
   end
 
   context "with an invalid email address" do
