@@ -1,0 +1,38 @@
+<%
+  opts = [["New Category", "new_category"]]
+  opts << ["---", "---"]
+  Item.all_categories.each { |cat| opts << [cat, cat] }
+%>
+
+<h2>
+  Create new item!
+</h2>
+
+<div class="form" id="new_item_form">
+  <%= form_for @item do |form| %>
+    <%= field_set_tag "New item details" do %>
+      <%= render "shared/form_errors" %>
+
+      <p>
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+      </p>
+
+      <p>
+        <%= form.label :description %>
+        <%= form.text_area :description %>
+      </p>
+
+      <p>
+        <%= form.label :category %>
+        <%= form.select(:category, options_for_select(opts, disabled: "---")) %>
+      </p>
+
+      <p>
+        <%= form.submit "Create" %>
+      </p>
+    <% end %>
+  <% end %>
+  <div class="clear"></div>
+
+</div>
