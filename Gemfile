@@ -17,6 +17,7 @@ group :development, :test do
   gem "pry-nav"
   gem "listen"
   gem "factory_girl_rails"
+  gem "rerun"
 end
 
 group :test do
