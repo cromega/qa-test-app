@@ -5,6 +5,8 @@ class User < ApplicationRecord
     hash_password if needs_password_update?
   end
 
+  has_many :items
+
   validates :username, uniqueness: true, length: { minimum: 4 }
   validates :email, format: { with: /@/, message: "has to look like an email address" }
   validates :password, confirmation: true, presence: true, if: ->{ needs_password_update? }
