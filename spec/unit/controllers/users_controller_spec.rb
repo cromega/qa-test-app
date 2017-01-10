@@ -47,7 +47,7 @@ describe UsersController, type: :controller do
     let(:user) { create(:user) }
 
     before do
-      session[:user_id] = user.id
+      log_in(user)
     end
 
     it "renders the profile settings" do
@@ -61,7 +61,7 @@ describe UsersController, type: :controller do
     let(:user) { create(:user, username: "oldusername") }
 
     before do
-      session[:user_id] = user.id
+      log_in(user)
     end
 
     context "when the user does not change the password" do
