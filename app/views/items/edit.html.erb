@@ -25,7 +25,7 @@
 
       <p>
         <%= form.label :category %>
-        <%= form.select(:category, options_for_select(opts, disabled: "---")) %>
+        <%= form.select(:category, options_for_select(opts, disabled: "---", selected: @item.category)) %>
       </p>
 
       <p>
