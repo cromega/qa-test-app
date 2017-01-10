@@ -2,8 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def authenticate
-    flash[:notice] = "The requested page was not found"
-    redirect_to "/" unless current_user
+    unless current_user
+      flash[:error] = "The requested page was not found"
+      redirect_to "/" unless current_user
+    end
   end
 
   def current_user
