@@ -25,7 +25,12 @@
 
       <p>
         <%= form.label :category %>
-        <%= form.select(:category, options_for_select(opts, disabled: "---", selected: @item.category)) %>
+        <%= form.select(:category, options_for_select(opts, disabled: "---", selected: @item.category), {}, id: "category_dropdown", onchange: "onChangeCategoryDropdown()") %>
+      </p>
+
+      <p id="new_category">
+        <%= form.label "New category" %>
+        <%= form.text_field :category, value: "", disabled: true %>
       </p>
 
       <p>

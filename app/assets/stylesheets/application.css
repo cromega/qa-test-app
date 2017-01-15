@@ -36,3 +36,6 @@ body {
   clear: both;
 }
 
+form p#new_category {
+  display: none;
+}
